@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="margin: auto;max-width: 500px;" class="containeer">
+        <h1>Cost Calculator</h1>
+        <label for="k">Students In Thousands</label>
+        <input onchange="calc()" id="k" type="number" value="30"> <br>
+        <label for="m">Number Of Months:</label>
+        <input onchange="calc()" id="m" type="number" value="1"> <br>
+        
+        <div style="margin-top: 30px; font-size:30px;">
+            <span>Total cost: </span> <span id="cost">00</span> <span>TK</span>
+        </div>
+        
+    </div>
+    
+    <script>
+
+        function calc() {
+            var total_views = 3195;
+        var band_used = 110.5;
+        var total_students = 2500;
+        var total_days = 2;
+
+        var per_view_band = band_used/total_views;
+        var per_student_view = total_views / total_students;
+
+        var students = document.getElementById("k").value *1000;
+        var days = document.getElementById("m").value * 30;
+
+        var projected_views = students * per_student_view;
+        var projected_band = projected_views * per_view_band;
+
+        var per_day_band = projected_band / total_days;
+
+        var final_band = (per_day_band * days) / 1024;
+
+        var cost_per_10tb = 28000;
+        var total_tb = final_band / 10;
+
+        var cost = total_tb * cost_per_10tb;
+
+        console.log(cost);
+        document.getElementById("cost").innerHTML = cost
+            }
+        calc();
+    </script>
+</body>
+</html>
